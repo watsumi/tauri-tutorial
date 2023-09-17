@@ -1,6 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
+import { platform } from "@tauri-apps/api/os";
 import "./App.css";
 
 function App() {
@@ -11,6 +12,12 @@ function App() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
     setGreetMsg(await invoke("greet", { name }));
   }
+
+  async function get_platform() {
+    const platformName = await platform();
+    console.log("platform", platformName);
+  }
+  get_platform();
 
   return (
     <div className="container">
